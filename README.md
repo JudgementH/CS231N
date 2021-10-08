@@ -55,3 +55,26 @@ result
 ```
 Test accuracy:  0.516
 ```
+
+
+
+## features
+
+I got the best net with lr:1e0, reg:1e-3
+
+
+
+# Assigment2
+
+
+
+## FCN
+
+![image-20211008221904068](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211008221904068.png)
+
+
+
+```
+Validation set accuracy:  0.553
+Test set accuracy:  0.526
+```
