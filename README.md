@@ -78,3 +78,21 @@ I got the best net with lr:1e0, reg:1e-3
 Validation set accuracy:  0.553
 Test set accuracy:  0.526
 ```
+
+
+
+## BN
+
+![image-20211009212011165](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211009212011165.png)
+
+
+
+batch normalization model could be much more robust to bad initialization
+
+
+
+## dropout
+
+![image-20211009220908231](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211009220908231.png)
+
+dropout can prevent overfitting
