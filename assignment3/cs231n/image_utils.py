@@ -5,11 +5,16 @@ from builtins import range
 import urllib.request, urllib.error, urllib.parse, os, tempfile
 
 import numpy as np
-from scipy.misc import imread, imresize
+# from scipy.misc import imread, imresize
+from PIL import Image
+from imageio import imread
 
 """
 Utility functions used for viewing and processing images.
 """
+
+def imresize(image_np, size):
+    return np.array(Image.fromarray(image_np).resize(size))
 
 def blur_image(X):
     """

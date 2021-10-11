@@ -1,0 +1,7 @@
+coco_captioning/
+MNIST_data/
+squeezenet_tf/
+
+coco_captioning.zip
+imagenet_val_25.npz
+squeezenet_tf.zip

@@ -74,7 +74,6 @@ class CaptioningRNN(object):
         for k, v in self.params.items():
             self.params[k] = v.astype(self.dtype)
 
-
     def loss(self, features, captions):
         """
         Compute training-time loss for the RNN. We input image features and
@@ -137,13 +136,30 @@ class CaptioningRNN(object):
         # defined above to store loss and gradients; grads[k] should give the      #
         # gradients for self.params[k].                                            #
         ############################################################################
-        pass
+        affine, cache_afine = affine_forward(features, W_proj, b_proj)  # N,D -> N,H
+        embed, cache_embed = word_embedding_forward(captions_in, W_embed)  # N,T-1 -> N, T-1, embed_dim
+        if self.cell_type == 'rnn':
+            h, cache_rnn = rnn_forward(embed, affine, Wx, Wh, b)
+        elif self.cell_type == 'lstm':
+            h, cache_lstm = lstm_forward(embed, affine, Wx, Wh, b)
+
+        h_affine, cache_h_affine = temporal_affine_forward(h, W_vocab, b_vocab)
+        loss, dx = temporal_softmax_loss(h_affine, captions_out, mask)  # softmax loss
+
+        # backward
+        dx, grads['W_vocab'], grads['b_vocab'] = temporal_affine_backward(dx, cache_h_affine)
+        if self.cell_type == 'rnn':
+            dx, dh, grads['Wx'], grads['Wh'], grads['b'] = rnn_backward(dx, cache_rnn)
+        elif self.cell_type == 'lstm':
+            dx, dh, grads['Wx'], grads['Wh'], grads['b'] = lstm_backward(dx, cache_lstm)
+
+        grads['W_embed'] = word_embedding_backward(dx, cache_embed)
+        dx, grads['W_proj'], grads['b_proj'] = affine_backward(dh, cache_afine)
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################
 
         return loss, grads
-
 
     def sample(self, features, max_length=30):
         """
@@ -199,7 +215,22 @@ class CaptioningRNN(object):
         # functions; you'll need to call rnn_step_forward or lstm_step_forward in #
         # a loop.                                                                 #
         ###########################################################################
-        pass
+        prev_h, cache_affine = affine_forward(features, W_proj, b_proj)
+        captions[:, 0] = self._start
+        x = [self._start] * N
+        if self.cell_type == 'lstm':
+            prev_c = np.zeros(prev_h.shape)
+        for t in range(1, max_length):
+            embed, cache_embed = word_embedding_forward(x, W_embed)
+            if self.cell_type == 'rnn':
+                next_h, cache = rnn_step_forward(embed, prev_h, Wx, Wh, b)
+            elif self.cell_type == 'lstm':
+                next_h, next_c, cache = lstm_step_forward(embed, prev_h, prev_c, Wx, Wh, b)
+                prev_c = next_c
+            prev_h = next_h
+            h_affine, cache_h_affine = affine_forward(next_h, W_vocab, b_vocab)
+            x = np.argmax(h_affine, axis=1)
+            captions[:,t] = x
         ############################################################################
         #                             END OF YOUR CODE                             #
         ############################################################################

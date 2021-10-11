@@ -110,3 +110,81 @@ in big dataset
 ```
 train acc: 0.579000; val_acc: 0.542000
 ```
+
+
+
+## pytorch
+
+```
+t = 100, loss = 1.2543
+t = 200, loss = 1.3030
+t = 300, loss = 1.2440
+t = 400, loss = 0.8463
+t = 500, loss = 0.8665
+t = 600, loss = 1.0692
+t = 700, loss = 1.1866
+Checking accuracy on validation set
+Got 663 / 1000 correct (66.30)
+```
+
+
+
+# Assignment3
+
+
+
+## RNN
+
+![image-20211011113226274](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211011113226274.png)
+
+
+
+## LSTM
+
+
+
+![image-20211011160159290](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211011160159290.png)
+
+
+
+![image-20211011160233154](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211011160233154.png)
+
+
+
+## NetworkVisualization
+
+
+
+**Fooling Images**
+
+![image-20211011204244612](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211011204244612.png)
+
+
+
+**Class visualization**
+
+![image-20211011204421294](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211011204421294.png)
+
+
+
+![image-20211011204432206](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211011204432206.png)
+
+
+
+## StyleTransfer
+
+![image-20211011211548225](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211011211548225.png)
+
+**generate**
+
+![image-20211011211539266](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211011211539266.png)
+
+
+
+## GAN
+
+
+
+**DCGAN**
+
+![image-20211011220531926](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211011220531926.png)
