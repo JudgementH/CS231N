@@ -96,3 +96,17 @@ batch normalization model could be much more robust to bad initialization
 ![image-20211009220908231](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211009220908231.png)
 
 dropout can prevent overfitting
+
+
+
+## CNN
+
+in small dataset
+
+![image-20211011101142363](https://cdn.jsdelivr.net/gh/JudgementH/image-host/md/image-20211011101142363.png)
+
+in big dataset
+
+```
+train acc: 0.579000; val_acc: 0.542000
+```
